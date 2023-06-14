@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/@contentstack/ui-extensions-sdk@2.2.0/dist/ui-extension-sdk.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/@contentstack/ui-extensions-sdk@2.2.0/dist/ui-extension-sdk.css"
+    />
+  </head>
+  <body>
+    <select id="limitedUrl" onchange="urlChange()">
+      <option>Frozen</option>
+      <option>Electronics</option>
+      <option>Pharmacy</option>
+    </select>
+    <script>
+      // initialise Field Extension
+      window.extensionField = {};
+      // find color input element
+
+      var limetedUrlField = document.getElementById("limitedUrl");
+      ContentstackUIExtension.init().then(function (extension) {
+        // make extension object globally available
+        extensionField = extension;
+        // Get current color field value from Contentstack and update the color picker input element
+        limitedUrlField.value = extensionField.field.getData();
+      });
+      // On url change event, pass new value to Contentstack
+      function urlChange() {
+        extensionField.field.setData(limitedUrlField.value);
+      }
+    </script>
+  </body>
+</html>
