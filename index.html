@@ -7,28 +7,34 @@
       type="text/css"
       href="https://unpkg.com/@contentstack/ui-extensions-sdk@2.2.0/dist/ui-extension-sdk.css"
     />
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
   </head>
   <body>
-    <select id="limitedUrl" onchange="urlChange()">
-      <option>Frozen</option>
-      <option>Electronics</option>
-      <option>Pharmacy</option>
+    <select id="limitedUrlSelect" onchange="urlChange()">
+      <option value="frozen">Frozen</option>
+      <option value="electronics">Electronics</option>
+      <option value="pharmacy">Pharmacy</option>
     </select>
+    <input type="text" id="limitedUrlValue" />
     <script>
       // initialise Field Extension
       window.extensionField = {};
       // find color input element
 
-      var limetedUrlField = document.getElementById("limitedUrl");
-      ContentstackUIExtension.init().then(function (extension) {
-        // make extension object globally available
-        extensionField = extension;
-        // Get current color field value from Contentstack and update the color picker input element
-        limitedUrlField.value = extensionField.field.getData();
-      });
+      // var limetedUrlSelect = document.getElementById("limitedUrlSelect");
+      // var limetedUrlValue = document.getElementById("limitedUrlValue");
+      // ContentstackUIExtension.init().then(function (extension) {
+      //   // make extension object globally available
+      //   extensionField = extension;
+      //   // Get current color field value from Contentstack and update the color picker input element
+      //   limitedUrlValue.value = extensionField.field.getData();
+      // });
       // On url change event, pass new value to Contentstack
       function urlChange() {
-        extensionField.field.setData(limitedUrlField.value);
+        console.log("urlChange");
+        // extensionField.field.setData(limitedUrlSelect.value);
+        document.getElementById("limitedUrlValue").value =
+          document.getElementById("limitedUrlSelect").value;
       }
     </script>
   </body>
